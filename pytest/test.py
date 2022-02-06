@@ -20,7 +20,9 @@ main:
     exe = csx64.link(objs, ('start', 'main'))
     emu = csx64.Emulator()
     emu.init(exe)
-    _, state = emu.execute_cycles(0xffffffffffffffff)
+    emu.ots = True
+    stdin, stdout, stderr = emu.setup_stdio()
+    _, state = emu.execute_cycles()
     assert state == 'Terminated' and emu.get_state() == 'Terminated' and emu.get_return_value() == 9
 
     print(emu.rax, emu.raxi, emu.raxf, emu.flags, emu.cc_b)
