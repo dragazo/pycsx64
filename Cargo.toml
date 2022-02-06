@@ -1,0 +1,25 @@
+[package]
+name = "pycsx64"
+version = "0.1.0"
+edition = "2021"
+license = "MIT or Apache-2.0"
+repository = "https://github.com/dragazo/pycsx64"
+documentation = "https://docs.rs/pycsx64"
+description = """
+Python binding to the rust implementation of CSX64
+"""
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "csx64"
+path = "src/lib.rs"
+crate-type = ["lib", "cdylib"]
+
+[dependencies]
+# csx64 = "0.1.2"
+csx64 = { path = "../csx64-rs" }
+pyo3 = { version = "0.15.1", features = [ "extension-module" ] }
+
+[build-dependencies]
+pyo3-build-config = "0.15.1"
